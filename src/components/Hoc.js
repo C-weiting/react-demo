@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 function Kaikeba(props) {
   return (
@@ -12,4 +12,17 @@ const WithName = Comp => {
   return props => <Comp {...props} name="react高阶组件" />;
 };
 
-export default WithName(Kaikeba);
+const WithRound = Comp => {
+  class NewComponet extends Component {
+    componentDidMount() {
+      console.log('do something');
+    }
+    render() {
+      return <Comp {...this.props} />;
+    }
+  }
+
+  return NewComponet;
+};
+
+export default WithName(WithRound(Kaikeba));
